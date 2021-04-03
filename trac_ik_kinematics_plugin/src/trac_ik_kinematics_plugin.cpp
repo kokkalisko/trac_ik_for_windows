@@ -97,7 +97,7 @@ bool TRAC_IKKinematicsPlugin::initialize(const std::string &robot_description,
   joint_min.resize(num_joints_);
   joint_max.resize(num_joints_);
 
-  uint joint_num = 0;
+  unsigned int joint_num = 0;
   for (unsigned int i = 0; i < chain_segs.size(); ++i)
   {
 
@@ -341,7 +341,7 @@ bool TRAC_IKKinematicsPlugin::searchPositionIK(const geometry_msgs::Pose &ik_pos
 
   KDL::JntArray in(num_joints_), out(num_joints_);
 
-  for (uint z = 0; z < num_joints_; z++)
+  for (unsigned int z = 0; z < num_joints_; z++)
     in(z) = ik_seed_state[z];
 
   KDL::Twist bounds = KDL::Twist::Zero();
@@ -381,7 +381,7 @@ bool TRAC_IKKinematicsPlugin::searchPositionIK(const geometry_msgs::Pose &ik_pos
 
   if (rc >= 0)
   {
-    for (uint z = 0; z < num_joints_; z++)
+    for (unsigned int z = 0; z < num_joints_; z++)
       solution[z] = out(z);
 
     // check for collisions if a callback is provided

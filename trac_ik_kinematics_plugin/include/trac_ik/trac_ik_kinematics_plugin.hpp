@@ -42,7 +42,7 @@ class TRAC_IKKinematicsPlugin : public kinematics::KinematicsBase
   std::vector<std::string> joint_names_;
   std::vector<std::string> link_names_;
 
-  uint num_joints_;
+  unsigned int num_joints_;
   bool active_; // Internal variable that indicates whether solvers are configured and ready
 
   KDL::Chain chain;
