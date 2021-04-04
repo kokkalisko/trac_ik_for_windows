@@ -85,7 +85,7 @@ void test(ros::NodeHandle& nh, double num_samples, std::string chain_start, std:
   // Create Nominal chain configuration midway between all joint limits
   KDL::JntArray nominal(chain.getNrOfJoints());
 
-  for (uint j = 0; j < nominal.data.size(); j++)
+  for (unsigned int  j = 0; j < nominal.data.size(); j++)
   {
     nominal(j) = (ll(j) + ul(j)) / 2.0;
   }
@@ -94,9 +94,9 @@ void test(ros::NodeHandle& nh, double num_samples, std::string chain_start, std:
   std::vector<KDL::JntArray> JointList;
   KDL::JntArray q(chain.getNrOfJoints());
 
-  for (uint i = 0; i < num_samples; i++)
+  for (unsigned int  i = 0; i < num_samples; i++)
   {
-    for (uint j = 0; j < ll.data.size(); j++)
+    for (unsigned int  j = 0; j < ll.data.size(); j++)
     {
       q(j) = fRand(ll(j), ul(j));
     }
@@ -112,11 +112,11 @@ void test(ros::NodeHandle& nh, double num_samples, std::string chain_start, std:
   int rc;
 
   double total_time = 0;
-  uint success = 0;
+  unsigned int  success = 0;
 
   ROS_INFO_STREAM("*** Testing KDL with " << num_samples << " random samples");
 
-  for (uint i = 0; i < num_samples; i++)
+  for (unsigned int  i = 0; i < num_samples; i++)
   {
     fk_solver.JntToCart(JointList[i], end_effector_pose);
     double elapsed = 0;
@@ -146,7 +146,7 @@ void test(ros::NodeHandle& nh, double num_samples, std::string chain_start, std:
 
   ROS_INFO_STREAM("*** Testing TRAC-IK with " << num_samples << " random samples");
 
-  for (uint i = 0; i < num_samples; i++)
+  for (unsigned int  i = 0; i < num_samples; i++)
   {
     fk_solver.JntToCart(JointList[i], end_effector_pose);
     double elapsed = 0;

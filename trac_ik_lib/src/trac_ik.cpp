@@ -85,7 +85,7 @@ TRAC_IK::TRAC_IK(const std::string& base_link, const std::string& tip_link, cons
   lb.resize(chain.getNrOfJoints());
   ub.resize(chain.getNrOfJoints());
 
-  uint joint_num = 0;
+  unsigned int joint_num = 0;
   for (unsigned int i = 0; i < chain_segs.size(); ++i)
   {
     joint = robot_model.getJoint(chain_segs[i].getJoint().getName());
@@ -152,7 +152,7 @@ void TRAC_IK::initialize()
   nl_solver.reset(new NLOPT_IK::NLOPT_IK(chain, lb, ub, maxtime, eps, NLOPT_IK::SumSq));
   iksolver.reset(new KDL::ChainIkSolverPos_TL(chain, lb, ub, maxtime, eps, true, true));
 
-  for (uint i = 0; i < chain.segments.size(); i++)
+  for (unsigned int i = 0; i < chain.segments.size(); i++)
   {
     std::string type = chain.segments[i].getJoint().getTypeName();
     if (type.find("Rot") != std::string::npos)
@@ -175,7 +175,7 @@ void TRAC_IK::initialize()
 bool TRAC_IK::unique_solution(const KDL::JntArray& sol)
 {
 
-  for (uint i = 0; i < solutions.size(); i++)
+  for (unsigned int i = 0; i < solutions.size(); i++)
     if (myEqual(sol, solutions[i]))
       return false;
   return true;
@@ -263,7 +263,7 @@ bool TRAC_IK::runSolver(T1& solver, T2& other_solver,
       if (unique_solution(q_out))
       {
         solutions.push_back(q_out);
-        uint curr_size = solutions.size();
+        unsigned int curr_size = solutions.size();
         errors.resize(curr_size);
         mtx_.unlock();
         double err, penalty;
@@ -311,7 +311,7 @@ void TRAC_IK::normalize_seed(const KDL::JntArray& seed, KDL::JntArray& solution)
 
   bool improved = false;
 
-  for (uint i = 0; i < lb.data.size(); i++)
+  for (unsigned int i = 0; i < lb.data.size(); i++)
   {
 
     if (types[i] == KDL::BasicJointType::TransJoint)
@@ -341,7 +341,7 @@ void TRAC_IK::normalize_limits(const KDL::JntArray& seed, KDL::JntArray& solutio
 
   bool improved = false;
 
-  for (uint i = 0; i < lb.data.size(); i++)
+  for (unsigned int i = 0; i < lb.data.size(); i++)
   {
 
     if (types[i] == KDL::BasicJointType::TransJoint)
@@ -373,7 +373,7 @@ void TRAC_IK::normalize_limits(const KDL::JntArray& seed, KDL::JntArray& solutio
 double TRAC_IK::manipPenalty(const KDL::JntArray& arr)
 {
   double penalty = 1.0;
-  for (uint i = 0; i < arr.data.size(); i++)
+  for (unsigned int i = 0; i < arr.data.size(); i++)
   {
     if (types[i] == KDL::BasicJointType::Continuous)
       continue;
