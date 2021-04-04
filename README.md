@@ -16,6 +16,8 @@ answer.  Secondary constraints of distance and manipulability are also provided
 in order to receive back the "best" IK solution.  
 **Note:** TRAC-IK is built on top of the KDL library, which is not thread safe (there's some internals that I think use _static_ variables).  Thus, you should not use multiple instances of TRAC-IK in the same process."
 
+For a deterministic version of the TRAC-IK repo see this [repo](https://github.com/aurone/trac_ik).
+
 This repo contains **4** ROS packages:
 
 - trac\_ik is a metapackage with build and complete [Changelog](https://bitbucket.org/traclabs/trac_ik/src/HEAD/trac_ik/CHANGELOG.rst) info.
